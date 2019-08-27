@@ -1,4 +1,4 @@
-# Improv Show Assignemtn Helper
+# Improv Show Assignment Helper
 A picker to help us fairly choose which people will perform in which improv show.
 
 There are usually two separate shows that may have different forms. A variable number of people may perform in each show.

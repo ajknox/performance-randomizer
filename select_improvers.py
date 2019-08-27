@@ -4,7 +4,7 @@ seed = 1234567890
 random.seed(seed)
 
 # how many people are in each show
-show_sizes = [5, 5]
+show_sizes = [8, 8]
 # total_slots = reduce(lambda x, y: x + y, show_sizes)
 total_slots = sum(show_sizes)
 double_slots = total_slots - len(improvers)
