@@ -1,3 +1,4 @@
+# Improv Show Assignemtn Helper
 A picker to help us fairly choose which people will perform in which improv show.
 
 There are usually two separate shows that may have different forms. A variable number of people may perform in each show.
@@ -34,12 +35,7 @@ Axioms
 Method:
 - determine how many people will need to go twice
 - take every form that got at least 1 first or second place vote and at least 4 votes overall
-- for each combination of those forms (scenario)
-  - find participants that said they would only participate in one of the forms and assign them to that form
-  - find participants that expressed no preference between the two forms and reserve them, including participants that said they would not perform in either form
-  - randomly order other participants
-  - assign each participant to their preferred form until the form is full, filling the other form if necessary
-  - randomly assign participants that expressed no preference until all slots full
+- get every combination of 2 forms (a scenario)
 - maybe a future version can choose a condorcet winner of scenarios using the smith-minimax method
 - for now, we'll vote out the least popular scenarios in a runoff
   - each participant votes for the scenario that _least_ reflects their preferences, randomly voting if a tie. Hierarchy of voting rules
@@ -51,4 +47,10 @@ Method:
   - the scenario with the most votes is eliminated, randomly select one if there is a tie
   - if there were no votes this round, randomly eliminate all buy one scenario
   - repeat until there is only one scenario left
+- that scenario is the winning scenario
+- find participants that said they would only participate in one of the forms and assign them to that form
+- find participants that expressed no preference between the two forms and reserve them, including participants that said they would not perform in either form
+- randomly order other participants
+- assign each participant to their preferred form until the form is full, filling the other form if necessary
+- randomly assign participants that expressed no preference until all slots full
 - randomly select people to go twice from all participants that want to go twice, and the form they are not in is not a form they said they would not perform in

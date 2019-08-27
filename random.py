@@ -9,6 +9,7 @@ show_sizes = [8, 8]
 total_slots = sum(show_sizes)
 double_slots = total_slots - len(improvers)
 single_show_sizes = [show_size - double_slots for show_size in show_sizes]
+single_show_size = single_show_sizes[0]
 
 potential_forms = {}
 
@@ -92,7 +93,64 @@ while(len(scenarios) > 1):
 forms = scenarios[0]
 print(f'========== Winning forms are {forms} ==========')
 
+"""
+- find participants that expressed no preference between the two forms and reserve them, including participants that said they would not perform in either form
+- randomly order other participants
+- assign each participant to their preferred form until the form is full, filling the other form if necessary
+- randomly assign participants that expressed no preference until all slots full
+- randomly select people to go twice from all participants that want to go twice, and the form they are not in is not a form they said they would not perform in
+"""
 
+set_lists = [[], []]
+names = set([name for name in improvers])
+for name, choices in improvers.items():
+    if choices.get(forms[0], choices['other']) and not choices.get(forms[1], choices['other']):
+        print(f"Assigned {name} to {forms[0]} because they don't want to perform in {forms[1]}")
+        set_lists[0].append(name)
+        names.remove(name)
+    elif choices.get(forms[1], choices['other']) and not choices.get(forms[0], choices['other']):
+        print(f"Assigned {name} to {forms[1]} because they don't want to perform in {forms[0]}")
+        set_lists[1].append(name)
+        names.remove(name)
+
+# assign people with a preference:
+full_sets = [False, False]
+for name, choices in improvers.items():
+    # skip people already assigned
+    if name not in names:
+        continue
+    form_preferences = [choices.get(forms[i], choices['other']) for i in range(2)]
+    for i in range(0):
+        if len(set_lists[i]) >= single_show_size:
+            print('{forms[i]} is full')
+            full_sets[i] = True
+    print(form_preferences)
+    if form_preferences[0] < form_preferences[1] and not full_sets[0]:
+        print(f"Assigned {name} to {forms[0]} because they prefer it")
+        set_lists[0].append(name)
+        names.remove(name)
+    elif form_preferences[0] < form_preferences[1] and not full_sets[1]:
+        print(f"Assigned {name} to {forms[1]} because they prefer it")
+        set_lists[1].append(name)
+        names.remove(name)
+
+# assign everyone else
+for name in names:
+    for i in range(0):
+        if len(set_lists[i]) >= single_show_size:
+            print('{forms[i]} is full')
+            full_sets[i] = True
+    if full_sets[0]:
+        random_selection = 1
+    elif full_sets[1]:
+        random_selection = 0
+    else:
+        random_selection = random.randrange(1)
+
+    print(f"Assigned {name} to {forms[random_selection]} randomly.")
+    set_lists[random_selection].append(name)
+
+print(f'Set lists {set_lists}')
 
 
 
