@@ -1,10 +1,10 @@
 import random
 from improvers import improvers # just a list of improvers
-# seed = 1234567890
-# random.seed(seed)
+seed = 1234567890
+random.seed(seed)
 
 # how many people are in each show
-show_sizes = [8, 8]
+show_sizes = [5, 5]
 # total_slots = reduce(lambda x, y: x + y, show_sizes)
 total_slots = sum(show_sizes)
 double_slots = total_slots - len(improvers)
@@ -124,7 +124,6 @@ for name, choices in improvers.items():
         if len(set_lists[i]) >= single_show_size:
             print('{forms[i]} is full')
             full_sets[i] = True
-    print(form_preferences)
     if form_preferences[0] < form_preferences[1] and not full_sets[0]:
         print(f"Assigned {name} to {forms[0]} because they prefer it")
         set_lists[0].append(name)
@@ -145,31 +144,24 @@ for name in names:
     elif full_sets[1]:
         random_selection = 0
     else:
-        random_selection = random.randrange(1)
+        random_selection = random.randrange(2)
 
     print(f"Assigned {name} to {forms[random_selection]} randomly.")
     set_lists[random_selection].append(name)
 
-print(f'Set lists {set_lists}')
+print(f'Set lists before going twice {set_lists}')
 
+# lazy doubles assignement, not guaranteed to finish in finite time
+for i, j in [[0,1], [1,0]]:
+    while len(set_lists[i]) < show_sizes[i]:
+        winner = random.choice(set_lists[j])
+        print(f'Go twice winner: {winner}')
+        if winner in set_lists[i]:
+            print('    already in set')
+        elif not improvers[winner].get(forms[i], choices['other']):
+            print(f"    but they don't want to perform in {forms[i]}")
+        else:
+            print(f"    adding them to {forms[i]}")
+            set_lists[i].append(winner)
 
-
-# random.shuffle(improvers)
-# go_twice = []
-# for i in [1,2,3]:
-#     go_twice.append(improvers.pop())
-# print(go_twice)
-#
-#
-# import random
-# seed = 91823712309487123 + 17
-# people = [
-#     'Alice',
-#     'Bob',
-#     'Carol',
-#     'Eve',
-#     ]
-# people.sort()
-# random.seed(seed)
-#
-# print(people)
+print(f'Final set lists {forms} with {set_lists}')
