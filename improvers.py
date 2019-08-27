@@ -1,0 +1,57 @@
+improvers = {
+    'Alice': {
+        'Harold': 1,
+        'Montage': 1,
+        'Monoscene': 2,
+        'Armando': False,
+        'twice': True,
+        'other': True,
+    },
+    'Bob': {
+        'Harold': 1,
+        'Monoscene': 3,
+        'Armando': 1,
+        'twice': True,
+        'other': False,
+    },
+    'Carol': {
+        'Harold': 2,
+        'Montage': 1,
+        'Monoscene': 2,
+        'twice': False,
+        'other': True,
+    },
+    'Darryl': {
+        'Harold': 3,
+        'Montage': 3,
+        'Monoscene': 2,
+        'Armando': 1,
+        'twice': False,
+        'other': False,
+    },
+    'Eve': {
+        'twice': True,
+        'other': True,
+    },
+    'Frank': {
+        'Harold': 3,
+        'Montage': 3,
+        'Monoscene': 2,
+        'Armando': 1,
+        'twice': True,
+        'other': True,
+    },
+    'Gabrielle': {
+        'Harold': False,
+        'Montage': 3,
+        'Monoscene': False,
+        'twice': False,
+        'other': True,
+    },
+    'Harry': {
+        'Harold': 1,
+        'Armando': 99,
+        'twice': True,
+        'other': False,
+    },
+}

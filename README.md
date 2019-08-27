@@ -10,8 +10,8 @@ Each eligible person gets to vote on a few things:
 Example of a person expressing preference:
 {
   'Alice': {
-    'go_twice': True,
-    'try_unknown_form': False,
+    'twice': True,
+    'unknown': False,
     'Harold': 1,
     'Scones': 1,
     'Monoscene': False,
